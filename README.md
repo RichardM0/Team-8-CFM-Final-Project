@@ -34,7 +34,7 @@ A threaded filtering step removes any ticker that fails the assignment rules:
 * Average daily volume must meet the minimum threshold
 * Ticker must still be listed
 
-Running these checks in parallel avoids long waits from API calls.
+Running these checks in parallel using threading avoids long waits from API calls.
 
 ### **3. Score and rank**
 
@@ -59,58 +59,14 @@ The final output includes:
 
 * The number of stocks
 * The weight of each position
-* The portfolio return
-* Sector-level exposure
+* The price of each stock
+* The amount of shares owned in each stock
+* The value of each stock
 
 ---
 
 ## 🛠 How to run it
 
-Install dependencies:
 
-```bash
-pip install -r requirements.txt
-```
-
-Run the full pipeline:
-
-```bash
-python main.py
-```
-
-You can also reuse individual modules if you only need filtering or optimization tools.
-
----
-
-## 📊 Example output
-
-```
-Optimal number of stocks: 25
-Optimal portfolio return: 12.47%
-```
-
-If you want to inspect weights:
-
-```python
-for t, w in zip(optimal_stocks, optimal_weights):
-    print(t, w)
-```
-
----
-
-## 📚 Project structure
-
-```
-.
-├── data/                    # optional saved files
-├── main.py                  # runs the full pipeline
-├── filtering.py             # ticker validation + threading
-├── scoring.py               # scoring logic
-├── optimize.py              # SLSQP optimization
-├── utils.py                 # helpers
-└── README.md
-```
-
----
 
 
